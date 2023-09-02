@@ -48,13 +48,38 @@ to interpret PHP code.
 Mixing Erlang and PHP is a powerful combination. PHP has a vast web development ecosystem and Erlang
 has more than 30 years of production ready concurrency solutions that scale well.
 
-## Docker Commands
+## Makefile
+
+- `make install`: Downloads _ProcessWire_ to `www` directory, copies `php.ini` and build `Dockerfile`.
+
+- `make up`: Uses `docker-compose` to start services.
+
+- `make bash`: Enters _YAWS_ container to a shell.
+
+### Some Useful Docker Commands
 
 - `docker-compose up -d` : Starts the containers
 - `docker ps`: Show the running containers
 - `docker kill <container id>`: Kills a container
 - `docker network prune`: Reset the network
 - `docker container prune`: Resets the stopped containers
+
+## Server
+
+The default address is [localhost:8080](http://localhost:8080).
+
+## YAWS Config
+
+The `yaws` directory contains configuration files for _YAWS_.
+
+- `yaws.conf`: The main configuration file for the server. Used for the entry point `yaws -i --conf /usr/local/etc/yaws/yaws.conf`.
+- `conf.d/processwire.conf`: Site configuration for the `www` directory that holds _ProcessWire_.
+- `appmods/processwire.erl`: Contains the rewrite rules (similar to `.htaccess` files). Needs to be compiled using (generates `processwire.beam`). 
+
+```shell
+erlc processwire.erl
+``` 
+
 
 ## References
 

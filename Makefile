@@ -1,14 +1,14 @@
 .PHONY: install build up ub bash
 
 install i:
-	rm -f .pw/.gitkeep
-	rm -f .pw/.gitattributes
+	rm -rf .pw/
 
-	git clone git://github.com/processwire/processwire.git -b dev .pw
+	git clone https://github.com/processwire/processwire.git -b dev .pw
 
 	rm -rf .pw/.git
 	rm -f .pw/.DS_Store
-	cp -R .pw/* wwww
+
+	cp -r .pw/* www
 	rm -rf .pw
 
 	cp php/php.ini www

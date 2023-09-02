@@ -57,7 +57,10 @@ RUN apk add --no-cache php-cgi \
     php-dom \
     php-pdo_mysql \
     php-pdo_sqlite \
-    php-tokenizer
+    php-tokenizer \
+    php-mysqli \
+    php-session \
+    php-ctype
 
 ENV ERLANG_HOME /usr/local/lib/erlang
 ENV YAWS_HOME ${ERLANG_HOME}/lib/yaws-2.1.1/
