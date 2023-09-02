@@ -7,6 +7,8 @@
 FROM erlang:22-alpine
 
 RUN apk update && apk upgrade
+
+# Install YAWS
 RUN apk add --no-cache --virtual .build-deps \
         autoconf \
         automake \
@@ -27,15 +29,15 @@ RUN apk add --no-cache --virtual .build-deps \
     && apk del .build-deps
 
 
-# Essentials
+# Install Essentials
 RUN echo "UTC" > /etc/timezone
 RUN apk add --no-cache zip unzip curl sqlite
 
-# Installing bash
+# Install bash
 RUN apk add bash
 RUN sed -i 's/bin\/ash/bin\/bash/g' /etc/passwd
 
-# Installing PHP
+# Install PHP
 RUN apk add --no-cache php-cgi \
     php-common \
     php-fpm \
@@ -63,16 +65,17 @@ RUN apk add --no-cache php-cgi \
     php-session \
     php-ctype
 
+# Set ENV
 ENV ERLANG_HOME /usr/local/lib/erlang
 ENV YAWS_HOME ${ERLANG_HOME}/lib/yaws-2.1.1/
 ENV YAWS_INCLUDE $YAWS_HOME/include
 ENV YAWS_CONF /usr/local/etc/yaws
 ENV PATH $PATH:$YAWS_HOME/bin
 
-## Compile Config
+# Compile YAWS Config
 COPY yaws $YAWS_CONF
 WORKDIR $YAWS_CONF/appmods
 RUN erlc processwire.erl
 
-
+# Entrypoint
 ENTRYPOINT [ "yaws", "-i", "--conf", "/usr/local/etc/yaws/yaws.conf" ]
