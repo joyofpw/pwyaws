@@ -11,6 +11,9 @@ If you’ve used Apache with mod_php, you may remember that each request is hand
 
 Because Yaws uses Erlang's lightweight threading system, it performs well under high concurrency. A load test conducted in 2002 comparing Yaws and Apache found that with the hardware tested, Apache failed at 4,000 concurrent connections, while Yaws continued functioning with over 80,000 concurrent connections.
 
+Erlang was built for low latency binary data streaming in telecom systems. It was designed with extreme manageability, scalability and concurrent processing in mind.
+Using Erlang for the Web you unlock the full power of telecom systems for web-scale, asynchronuous, non-blocking, sharded, event-driven, message-passing, noSQL, reliable, highly-available, high-performance, secure, qualative, real-time, clusterable applications. 
+
 ## Erlang
 
 The recommended way is using a package manager with a pre built _erlang_ installation.
@@ -98,6 +101,7 @@ erlc processwire.erl
 - https://github.com/segeda/docker-yaws
 - https://blog.lfe.io/tutorials/2015/11/28/2110-lfe-yaws-docker-update/
 - https://github.com/lfe-deprecated/lfeyawsdemo
+- https://synrc.com/apps/n2o/doc/book.pdf
 - https://github.com/Houdini/configs/tree/master/yaws
 
 ## Credits
