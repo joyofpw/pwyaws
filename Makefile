@@ -1,7 +1,19 @@
 .PHONY: install build up ub bash
 
 install i:
-	git clone https://github.com/processwire/processwire.git www/
+	rm -f .pw/.gitkeep
+	rm -f .pw/.gitattributes
+
+	git clone git://github.com/processwire/processwire.git -b dev .pw
+
+	rm -rf .pw/.git
+	rm -f .pw/.DS_Store
+	cp -R .pw/* wwww
+	rm -rf .pw
+
+	cp php/php.ini www
+
+	make build
 
 up u:
 	docker-compose up
